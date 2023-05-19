@@ -12,5 +12,5 @@ COPY . .
 
 EXPOSE 8003
 
-RUN ["npm", "start"]
+CMD ["npm", "start"]
 
