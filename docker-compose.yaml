@@ -1,7 +1,22 @@
 services:
   auth:
-    build: ./auth
+    image: auth-service
     ports:
-      -8000:8000
+      - 8000:8000
+  bug-service:
+    image: bug-service
+    ports:
+      - 8001:8001 
+
+  user-service:
+    image: user-service
+    ports:
+      - 8002:8002 
+
+  comment-service:
+    image: comment-service
+    ports:
+      - 8003:8003
+
 # volumes:
 

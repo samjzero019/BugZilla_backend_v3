@@ -28,4 +28,5 @@ mongoose
   })
   .catch((err) => {
     console.log(`Failed to Connect to DB: `, err.message);
+    process.exit(0);
   });
