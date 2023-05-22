@@ -1,15 +1,15 @@
+const jwt = require("jsonwebtoken");
+
 module.exports = (req, res, next) => {
   let token =
     req.get("authorization") ||
     req.get("Authorization") ||
     req.get("x-auth-token");
   if (!token) {
-    return res
-      .status(400)
-      .json({
-        message: "Token not Found!",
-        PossibleSolution: "YOu might forgot to login!",
-      });
+    return res.status(400).json({
+      message: "Token not Found!",
+      PossibleSolution: "YOu might forgot to login!",
+    });
   }
   token = token.split(" ")[1];
   try {

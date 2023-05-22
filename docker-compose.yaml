@@ -1,20 +1,28 @@
 services:
   auth:
-    image: auth-service
+    image: auth-service:latest
+    env_file:
+      - "./auth_service/.env"
     ports:
       - 8000:8000
   bug-service:
-    image: bug-service
+    image: bug-service:latest
+    env_file:
+      - "./bug_service/.env"
     ports:
       - 8001:8001 
 
   user-service:
-    image: user-service
+    image: user-service:latest
+    env_file:
+      - "./user_service/.env"
     ports:
       - 8002:8002 
 
   comment-service:
-    image: comment-service
+    image: comment-service:latest
+    env_file:
+      - "./comment_service/.env"
     ports:
       - 8003:8003
 
