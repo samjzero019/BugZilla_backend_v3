@@ -1,20 +1,91 @@
+const Comment = require("../models/Comment");
 
-exports.createComment = (req,res,next)=>{
-    res.status(200).json({message:"Comment Created Successfully!"})
-}
+exports.createComment = async (req, res, next) => {
+  const { text } = req.body;
+  const { bugID } = req.body;
+  //todo: check if this BugId is valid by communication
+  try {
+    var comment = await Comment.create({
+      text,
+      _attached_to: bugID,
+      _creator: req.current_user._id,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: `Something Went Wrong!`, error: error.message });
+  }
+  if (!comment) {
+    return res.status(400).json({ message: `Something Went Wrong!` });
+  }
+  res
+    .status(200)
+    .json({ message: "Comment Created Successfully!", response: comment });
+};
 
+exports.getComments = async (req, res, next) => {
+  const id = req.params?.id;
+  let comments;
+  try {
+    if (id) {
+      comments = await Comment.findOne({ _id: id });
+    } else {
+      comments = await Comment.find();
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: `Something Went Wrong!`, error: error.message });
+  }
+  if (!comments) {
+    return res.status(500).json({
+      message: `Something Went Wrong!`,
+      error: `Invalid Record/s Found!`,
+    });
+  }
 
-exports.getComments = (req,res,next)=>{
-    res.status(200).json({message:"Comment Retrieved Successfully!"})
-}
+  res
+    .status(200)
+    .json({ message: "Comment Retrieved Successfully!", response: comments });
+};
 
+exports.updateComment = async (req, res, next) => {
+  const body = req.body;
+  const { id } = req.params;
+  if(body._creator){
+     return res
+    .status(400)
+    .json({ message: `Something Went Wrong!`, error: `You Cant update Comment Creator! ` });
+  }
+  //todo: if there is change in bugID ... need to first confirm BugID !
+  try {
+    var result = await Comment.updateOne({ _id: id }, body, {
+      runValidators: true,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: `Something Went Wrong!`, error: error.message });
+  }
+  if (result.modifiedCount <= 0) {
+    return res.status(400).json({ message: `Failed to Find Valid Record!!` });
+  }
 
-exports.updateComment = (req,res,next)=>{
-    res.status(200).json({message:"Comment Updated Successfully!"})
-}
+  res.status(200).json({ message: "Comment Updated Successfully!" });
+};
 
+exports.deleteComment = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    var result = await Comment.deleteOne({ _id: id });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: `Something Went Wrong!`, error: err.message });
+  }
+  if (!result) {
+    return res.status(400).json({ message: `Failed to Find Valid Record!` });
+  }
 
-exports.deleteComment = (req,res,next)=>{
-    res.status(200).json({message:"Comment Deleted Successfully!"})
-}
-
+  res.status(200).json({ message: "Comment Deleted Successfully!" });
+};
