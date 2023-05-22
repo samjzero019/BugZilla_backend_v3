@@ -17,6 +17,7 @@ const UserSchemaDefinition = new Schema(
     role: {
       type: String,
       enum: ["developer", "qa", "manager"],
+      default: "developer",
       required: true,
       lowercase: true,
       trim: true,

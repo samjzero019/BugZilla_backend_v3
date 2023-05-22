@@ -7,7 +7,7 @@ const errorController = require('../controllers/error')
 const router = express.Router()
 
 /** Get All users Route */
-router.get('/', userController.getAllUsers)
+router.get('/:id?', userController.getUsers)
 /** Change Role Route */
 router.put('/role/:id', userController.changeRole)
 
