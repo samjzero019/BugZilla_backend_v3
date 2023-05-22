@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { search } = require("../../../src/routes/auth");
 
 const Schema = mongoose.Schema;
 const bugSchemaDefinition = new Schema(
@@ -15,8 +14,9 @@ const bugSchemaDefinition = new Schema(
     description: String,
     priority: {
       type: String,
-      required: true,
       enum: ["low", "medium", "high"],
+      default: "low",
+      required: true,
       message: `{Value} is not Valid!`,
     },
     deadline: {
@@ -24,11 +24,11 @@ const bugSchemaDefinition = new Schema(
       required: true,
     },
     status: {
-      type: String,
-      required: true,
-      defaultValue: "pending",
-      message: `{Value} is not Valid!`,
+      type: String, // [Low, Medium, High]
       enum: ["pending", "in-progress", "completed"],
+      default: "pending",
+      required: true,
+      message: "{Value} is not valid",
     },
     assigned_to: {
       type: Schema.Types.ObjectId,
