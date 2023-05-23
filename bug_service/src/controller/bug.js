@@ -4,7 +4,6 @@ exports.createBug = async (req, res, next) => {
   // const { title, description, deadline, priority, status } = req.body;
   const body = req.body;
 
-  // validate input ... //TODO
   try {
     var existingBug = await Bug.findOne({ title: body.title });
   } catch (error) {
@@ -105,6 +104,15 @@ exports.deleteBug = async (req, res, next) => {
 exports.assignToUser = async (req, res, next) => {
   const { id } = req.params;
   const { userID } = req.body;
+
+  const token = req.get("Authorization") || req.get("authorization");
+  const isUser = await fetchBugRecord(userID, token);
+  console.log("userRecord", isUser);
+  if (isUser === false) {
+    return res
+      .status(400)
+      .json({ message: `Failed to Find Valid Record with userID: ${userID}` });
+  }
 
   let existingBug;
   try {

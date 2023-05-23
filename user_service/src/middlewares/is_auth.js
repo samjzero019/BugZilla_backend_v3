@@ -3,7 +3,7 @@ const axios = require("axios");
 module.exports = (req, res, next) => {
   const token = req.get("Authorization") || req.get("authorization");
   axios
-    .post("http://localhost:8000/api/v1/auth/verify", {
+    .post(process.env.AUTH_SERVICE_URL, {
       token: token,
     })
     .then((resp) => {
