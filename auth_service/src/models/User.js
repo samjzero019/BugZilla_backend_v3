@@ -12,7 +12,7 @@ const UserSchemaDefinition = new Schema(
     password: {
       type: String,
       required: true,
-      min: [4, "Must be atleast 4 character", "Found {VALUE}"],
+      min: [4, "Must be at-least 4 character", "Found {VALUE}"],
     },
     role: {
       type: String,

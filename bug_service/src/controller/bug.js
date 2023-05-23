@@ -32,7 +32,6 @@ exports.createBug = async (req, res, next) => {
 
 exports.retrieveBugs = async (req, res, next) => {
   const id = req.params?.id;
-
   try {
     var bugs;
     if (id) {

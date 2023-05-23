@@ -1,9 +1,15 @@
 const Comment = require("../models/Comment");
-
+const fetchBugRecord = require("../utils/helper");
 exports.createComment = async (req, res, next) => {
-  const { text } = req.body;
-  const { bugID } = req.body;
-  //todo: check if this BugId is valid by communication
+  const { text, bugID } = req.body;
+  const token = req.get("Authorization") || req.get("authorization");
+  const bug = await fetchBugRecord(bugID, token);
+  // console.log("bugRecord", bug);
+  if (bug === false) {
+    return res
+      .status(400)
+      .json({ message: `Failed to Find Valid Record with bugID: ${bugID}` });
+  }
   try {
     var comment = await Comment.create({
       text,
@@ -52,10 +58,11 @@ exports.getComments = async (req, res, next) => {
 exports.updateComment = async (req, res, next) => {
   const body = req.body;
   const { id } = req.params;
-  if(body._creator){
-     return res
-    .status(400)
-    .json({ message: `Something Went Wrong!`, error: `You Cant update Comment Creator! ` });
+  if (body._creator) {
+    return res.status(400).json({
+      message: `Something Went Wrong!`,
+      error: `You Cant update Comment Creator! `,
+    });
   }
   //todo: if there is change in bugID ... need to first confirm BugID !
   try {

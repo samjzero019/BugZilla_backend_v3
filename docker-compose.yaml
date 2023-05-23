@@ -1,3 +1,4 @@
+# todo: need to chnage mongo from cloud to local server in order to avoid using personal cred
 services:
   auth:
     image: auth-service:latest
