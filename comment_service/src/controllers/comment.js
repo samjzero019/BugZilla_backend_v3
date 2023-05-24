@@ -90,6 +90,8 @@ exports.deleteComment = async (req, res, next) => {
       .status(500)
       .json({ message: `Something Went Wrong!`, error: err.message });
   }
+  //todo: see why delete is giving +ve response on invalid ID record!
+  console.log("result in comment: ", result);
   if (!result) {
     return res.status(400).json({ message: `Failed to Find Valid Record!` });
   }

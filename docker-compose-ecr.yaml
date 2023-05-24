@@ -1,0 +1,36 @@
+# todo: need to chnage mongo from cloud to local server in order to avoid using personal cred
+
+version: '3'
+x-aws-vpc: "vpc-046b809ce69180837"
+services:
+  auth-service:
+    image: public.ecr.aws/z8s8n5u5/auth-service:latest
+    restart: always 
+    env_file:
+      - "./auth_service/.env"
+    ports:
+      - 8000:8000
+
+  bug-service:
+    image: public.ecr.aws/z8s8n5u5/bug-service:latest
+    restart: always
+    env_file:
+      - "./bug_service/.env"
+    ports:
+      - 8001:8001 
+
+  user-service:
+    image: public.ecr.aws/z8s8n5u5/user-service:latest
+    restart: always
+    env_file:
+      - "./user_service/.env"
+    ports:
+      - 8002:8002 
+
+  comment-service:
+    image: public.ecr.aws/z8s8n5u5/comment-service:latest
+    restart: always
+    env_file:
+      - "./comment_service/.env"
+    ports:
+      - 8003:8003
