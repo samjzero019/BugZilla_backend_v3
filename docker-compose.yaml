@@ -1,7 +1,9 @@
 # todo: need to chnage mongo from cloud to local server in order to avoid using personal cred
+version: '3'
 services:
   auth-service:
     image: usama019/auth-service:latest
+    restart: always 
     env_file:
       - "./auth_service/.env"
     ports:
@@ -9,6 +11,7 @@ services:
 
   bug-service:
     image: usama019/bug-service:latest
+    restart: always
     env_file:
       - "./bug_service/.env"
     ports:
@@ -16,14 +19,15 @@ services:
 
   user-service:
     image: usama019/user-service:latest
+    restart: always
     env_file:
       - "./user_service/.env"
     ports:
       - 8002:8002 
 
-
   comment-service:
     image: usama019/comment-service:latest
+    restart: always
     env_file:
       - "./comment_service/.env"
     ports:

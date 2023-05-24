@@ -1,5 +1,6 @@
 // http://localhost:8002/api/v1/user/:id?
 
+
 const axios = require("axios");
 module.exports = async (id, token) => {
   try {
@@ -11,7 +12,7 @@ module.exports = async (id, token) => {
   } catch (error) {
     console.log(`failed to fetch User Record From User Service!`, error.message);
   }
-  if (!result.data.response) {
+  if (!result) {
     console.log(`Something Went Wrong! Check if userID is valid!`);
     return false;
   }

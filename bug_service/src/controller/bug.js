@@ -1,4 +1,5 @@
 const Bug = require("../models/Bug");
+const fetchBugRecord = require("../utils/helper");
 
 exports.createBug = async (req, res, next) => {
   // const { title, description, deadline, priority, status } = req.body;

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   let { token } = req.body;
+  
   if (!token) {
     return res.status(400).json({
       message: "Token not Found!",
