@@ -11,7 +11,7 @@ module.exports = async (id, token) => {
   } catch (error) {
     console.log(`failed to fetch BugRecord From Bug Service!`, error.message);
   }
-  if (!result.data.response) {
+  if (!result) {
     console.log(`Something Went Wrong! Check if bugID is valid!`);
     return false;
   }
