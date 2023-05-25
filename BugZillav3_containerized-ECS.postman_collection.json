@@ -1,0 +1,691 @@
+{
+	"info": {
+		"_postman_id": "79d1dffc-1a08-4064-9428-095139844a8e",
+		"name": "BugZillav3_containerized-ECS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25000891"
+	},
+	"item": [
+		{
+			"name": "user-service",
+			"item": [
+				{
+					"name": "getUsers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8002/api/v1/user",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeRole",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"manager\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8002/api/v1/user/role/646b4699b4929cf2bc833fe1",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"role",
+								"646b4699b4929cf2bc833fe1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bug-service",
+			"item": [
+				{
+					"name": "CreateBug",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Bug 1 by qa\",\r\n    \"description\": \"Some description\",\r\n    \"priority\": \"high\",\r\n    \"deadline\": 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBugs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBug",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Some description updated 2 by qa \",\r\n    \"deadline\": 11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug/646df0b39fa3231b06cdcb13",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug",
+								"646df0b39fa3231b06cdcb13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBug",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug/646b0cc769905f6c8f1c1879",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug",
+								"646b0cc769905f6c8f1c1879"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignBug",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\": \"646b65ada2f7b82ed113700e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug/assign/646df0b39fa3231b06cdcb13",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug",
+								"assign",
+								"646df0b39fa3231b06cdcb13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBugByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug/646b123508544f379afdbb7b",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug",
+								"646b123508544f379afdbb7b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBugStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"completed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8001/api/v1/bug/646df0b39fa3231b06cdcb13",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"v1",
+								"bug",
+								"646df0b39fa3231b06cdcb13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment-service",
+			"item": [
+				{
+					"name": "createComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"text\": \"Some\",\r\n    \"bugID\": \"646b123508544f379afdbb7b\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8003/api/v1/comment/",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8003/api/v1/comment",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Some description 2  updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8003/api/v1/comment/646b3a9b5ef60ce35083c695",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"646b3a9b5ef60ce35083c695"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8003/api/v1/comment/646b3a9b5ef60ce35083c695",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8003",
+							"path": [
+								"api",
+								"v1",
+								"comment",
+								"646b3a9b5ef60ce35083c695"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth-service",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"qa@mail.com\",\r\n    \"password\": \"qweRTY#21\",\r\n    \"role\": \"qa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8000/api/v1/auth/register",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"qa@mail.com\",\r\n    \"password\": \"qweRTY#21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8000/api/v1/auth/login",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8000/api/v1/auth/logout",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Deployed_Auth_Token}} || refresh token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LB_BASE_URL}}:8000/api/v1/auth/refresh",
+							"host": [
+								"{{LB_BASE_URL}}"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "bugzilla_v3_auth_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0NmRiNGM0MzdmOTA1OWNlYjMyYzgyMCIsImVtYWlsIjoicWEzQG1haWwuY29tIiwicm9sZSI6InFhIn0sImlhdCI6MTY4NDkxMTMxMiwiZXhwIjoxNjg0OTE4NTEyfQ.lOeEDJdaJYjZGRhyeGlo20iT59QGeO4ihztqCuVpkNk"
+		},
+		{
+			"key": "LB_BASE_URL",
+			"value": "http://bugzi-loadb-cjqxsfpquuh9-1ba0900dd60e75cc.elb.us-east-2.amazonaws.com"
+		},
+		{
+			"key": "Deployed_Auth_Token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY0NmI2NWFkYTJmN2I4MmVkMTEzNzAwZSIsImVtYWlsIjoicWFAbWFpbC5jb20iLCJyb2xlIjoicWEifSwiaWF0IjoxNjg0OTI0NTY0LCJleHAiOjE2ODQ5MzE3NjR9.9VBU1y1W2rJDOp0RM9xm_2D4-0qaqDvFrmf7OZBJMeA"
+		}
+	]
+}
