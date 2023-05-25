@@ -92,7 +92,7 @@ exports.deleteComment = async (req, res, next) => {
   }
   //todo: see why delete is giving +ve response on invalid ID record!
   console.log("result in comment: ", result);
-  if (!result) {
+  if (!result.deletedCount<=0) {
     return res.status(400).json({ message: `Failed to Find Valid Record!` });
   }
 

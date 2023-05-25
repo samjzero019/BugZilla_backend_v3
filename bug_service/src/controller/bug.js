@@ -35,6 +35,7 @@ exports.retrieveBugs = async (req, res, next) => {
   try {
     var bugs;
     if (id) {
+      // console.log("ID in bugGET: ", id);
       bugs = await Bug.find({ _id: id });
     } else {
       bugs = await Bug.find();
